@@ -1,0 +1,44 @@
+﻿@using Brainence.Models
+@model IEnumerable<Brainence.Models.SentenceRecordModel>
+@{
+    ViewData["Title"] = "Brainence Test Task";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <form asp-action="Index" asp-controller="Home" method="Post" enctype="multipart/form-data">
+            <p>
+                <label>Word</label>
+                <input name="Word" class="form-control" />
+            </p>
+            <p>
+                <label>File</label>
+                <input name="File" type="file" class="form-control" accept="text/plain" />
+            </p>
+            <p>
+                <input type="submit" value="Start" />
+            </p>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <h3>All sentences - @Model.Count()</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Words count</th>
+                <th>Sentence</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.WordsCount</td>
+                    <td>@s.Sentence</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
